@@ -14,8 +14,8 @@ A desktop application that monitors CPU, RAM, and disk usage in real time, built
 ## Setup
 
 ```bash
-git clone <repo-url>
-cd <project-folder>
+git clone https://github.com/r4muba/SysWatch
+cd SysWatch
 uv sync
 ```
 
