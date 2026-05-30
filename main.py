@@ -1,9 +1,12 @@
 from src.gui import GUI
+from src.controller import Controller
 
 def main():
-    app = GUI()
-    app.run()
+    controller = Controller()
+    app = GUI(controller)
 
+
+    app.run()
 
 if __name__ == "__main__":
     main()

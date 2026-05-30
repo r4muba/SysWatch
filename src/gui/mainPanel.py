@@ -1,11 +1,13 @@
 import ttkbootstrap as tb
 
 class MainPanel (tb.Frame):
-    def __init__(self, frame):
+    def __init__(self, frame, controller):
         super().__init__(
             frame,
             bootstyle="success"
         )
+
+        self._ctrl = controller
 
         panel_one = None
         panel_two = None

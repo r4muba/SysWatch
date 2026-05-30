@@ -1,11 +1,13 @@
 import ttkbootstrap as tb
 
 class SidePanel (tb.Frame):
-    def __init__(self, frame):
+    def __init__(self, frame, controller):
         super().__init__(
             frame,
             bootstyle="info"
         )
+
+        self._ctrl = controller
         self._build()
 
     def _build(self):
