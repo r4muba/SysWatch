@@ -17,8 +17,8 @@ class GUI:
         self._root.columnconfigure (0, weight=4, uniform="M")
         self._root.columnconfigure (1, weight=11, uniform="M")
 
-        self._sideFrame = SideFrame(self._root, self._threadController, self)
-        self._mainFrame = MainFrame(self._root, self._threadController)
+        self._sideFrame = SideFrame(self._root, self._systemData, self)
+        self._mainFrame = MainFrame(self._root, self._systemData, self._threadController)
 
         self._sideFrame.grid(row=0, column=0, sticky="nsew")
         self._mainFrame.grid(row=0, column=1, sticky="nsew")
