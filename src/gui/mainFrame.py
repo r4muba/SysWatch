@@ -7,7 +7,7 @@ class MainFrame (tb.Frame):
             bootstyle="success"
         )
 
-        self._sysData = systemData
+        self._systemData = systemData
 
         panel_one = None
         panel_two = None

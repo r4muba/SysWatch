@@ -7,7 +7,7 @@ class SideFrame (tb.Frame):
             bootstyle="info"
         )
 
-        self._sysData = systemData
+        self._systemData = systemData
         self._build()
 
     def _build(self):
