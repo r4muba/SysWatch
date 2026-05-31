@@ -22,5 +22,19 @@ class GUI:
         self._sideFrame.grid(row=0, column=0, sticky="nsew")
         self._mainFrame.grid(row=0, column=1, sticky="nsew")
     
+    
+    def packMemoryPanel(self):
+        self._mainPanel._memPanel.pack(fill="both", expand=True)
+
+    def packProcessPanel(self):
+        self._mainPanel._proccessPanel.pack(fill="both", expand=True)
+
+    def packGeneralPanel(self):
+        self._mainPanel._generalPanel.pack(fill="both", expand=True)
+
+    def packDebugPanel(self):
+        self._mainPanel._debugPanel.pack(fill="both", expand=True)
+
+    
     def run(self):
         self._root.mainloop()
