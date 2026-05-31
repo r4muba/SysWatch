@@ -1,6 +1,6 @@
 import ttkbootstrap as tb
 
-class MainPanel (tb.Frame):
+class MainFrame (tb.Frame):
     def __init__(self, frame, controller):
         super().__init__(
             frame,

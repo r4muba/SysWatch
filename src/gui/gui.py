@@ -1,6 +1,6 @@
 import ttkbootstrap as tb
-from .sidePanel import SidePanel
-from .mainPanel import MainPanel
+from .sideFrame import SidePanel
+from .mainFrame import MainPanel
 
 class GUI:
     WIDTH = 1280
