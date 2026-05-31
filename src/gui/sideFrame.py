@@ -24,7 +24,7 @@ class SideFrame (tb.Frame):
         b1 = tb.Button (
             self, 
             bootstyle="danger",
-            text="Option 1",
+            text="General",
             command=self._gui.packGeneralPanel
         )
         b1.pack(fill="x", padx=40, pady=20)
@@ -32,7 +32,7 @@ class SideFrame (tb.Frame):
         b2 = tb.Button (
             self, 
             bootstyle="danger",
-            text="Option 2",
+            text="Proccess",
             command=self._gui.packProcessPanel
         )
         b2.pack(fill="x", padx=40, pady=20)
@@ -40,7 +40,7 @@ class SideFrame (tb.Frame):
         b3 = tb.Button (
             self, 
             bootstyle="danger",
-            text="Option 3",
+            text="Memory",
             command=self._gui.packMemoryPanel
         )
         b3.pack(fill="x", padx=40, pady=20)
@@ -48,7 +48,7 @@ class SideFrame (tb.Frame):
         b4 = tb.Button (
             self, 
             bootstyle="danger",
-            text="Option 3",
+            text="Debug",
             command=self._gui.packDebugPanel
         )
         b4.pack(fill="x", padx=40, pady=20)
