@@ -1,12 +1,13 @@
 import ttkbootstrap as tb
 
 class SideFrame (tb.Frame):
-    def __init__(self, frame, systemData):
+    def __init__(self, frame, systemData, gui):
         super().__init__(
             frame,
             bootstyle="info"
         )
 
+        self._gui = gui
         self._sysData = systemData
         self._build()
 
@@ -24,7 +25,7 @@ class SideFrame (tb.Frame):
             self, 
             bootstyle="danger",
             text="Option 1",
-            command=None
+            command=self._gui.packGeneralPanel
         )
         b1.pack(fill="x", padx=40, pady=20)
 
@@ -32,7 +33,7 @@ class SideFrame (tb.Frame):
             self, 
             bootstyle="danger",
             text="Option 2",
-            command=None
+            command=self._gui.packProcessPanel
         )
         b2.pack(fill="x", padx=40, pady=20)
 
@@ -40,7 +41,15 @@ class SideFrame (tb.Frame):
             self, 
             bootstyle="danger",
             text="Option 3",
-            command=None
+            command=self._gui.packMemoryPanel
         )
         b3.pack(fill="x", padx=40, pady=20)
+
+        b4 = tb.Button (
+            self, 
+            bootstyle="danger",
+            text="Option 3",
+            command=self._gui.packDebugPanel
+        )
+        b4.pack(fill="x", padx=40, pady=20)
 
