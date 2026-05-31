@@ -10,4 +10,11 @@ class SystemData:
         '''
         
         return psutil.virtual_memory()
+    
+    def getSwapData(self):
+        '''
+        https://psutil.readthedocs.io/stable/#psutil.virtual_memory
+        '''
+        
+        return psutil.swap_memory()
         

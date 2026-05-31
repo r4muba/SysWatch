@@ -23,41 +23,45 @@ class MemoryPanel(tb.Frame):
         )
         title.pack(anchor="w", padx=30, pady=20)
 
+        memoryData = self._systemData.getMemoryData()
+        self.total_mb = memoryData.total / self._MB
+
+        swapData = self._systemData.getSwapData()
+        #self.total_swap
+
         totalText = tb.Label(
             self,
-            text="TOTAL",
+            text=f"TOTAL: {round(self.total_mb)} MB", # <-- Aquí está la magia
             font=("Helvetica", 24, "bold"),
             bootstyle="warning"
         )
         totalText.place(x=100, y=100)
 
-        memoryData = self._systemData.getMemoryData()
-
-        self.memory_available = tb.Meter(
+        self.memory_in_use = tb.Meter(
             master=self,
-            metersize=200,
+            metersize=150,
             amountused=0,           # Empezamos en 0%
-            amounttotal=memoryData.total/self._MB,        # El total
+            amounttotal=100,        # <--- FIJO EN 100 para que la barra se mida en porcentaje
             metertype="semi",       # Estilo velocímetro
-            textright="MB",    
+            textright="%",          # Añade el símbolo de % al lado del número
             subtext="uso RAM",    
             bootstyle="success",    
             interactive=False       # El usuario no lo puede mover con el mouse
         )
-        self.memory_available.place(x=100,y=200)
+        self.memory_in_use.place(x=100, y=200)
 
         self.memory_available = tb.Meter(
             master=self,
-            metersize=200,
+            metersize=150,
             amountused=0,           # Empezamos en 0%
-            amounttotal=memoryData.total/self._MB,        # El total
+            amounttotal=self.total_mb,        # El total
             metertype="semi",       # Estilo velocímetro
             textright="MB",    
-            subtext="uso RAM",    
+            subtext="de RAM libre",    
             bootstyle="success",    
             interactive=False       # El usuario no lo puede mover con el mouse
         )
-        self.memory_available.place(x=100,y=200)
+        self.memory_available.place(x=300,y=200)
 
         self._threadController.createThread(self.actualizar_ram)
 
@@ -66,5 +70,9 @@ class MemoryPanel(tb.Frame):
         memoryData = self._systemData.getMemoryData()
 
         used_mb = memoryData.used / self._MB
+        free_mb = memoryData.free / self._MB
 
-        self.memory_available.configure(amountused=used_mb)
+        porcentaje_uso = (used_mb / self.total_mb) * 100
+
+        self.memory_in_use.configure(amountused=round(porcentaje_uso))
+        self.memory_available.configure(amountused=free_mb)
