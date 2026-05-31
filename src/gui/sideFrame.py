@@ -1,13 +1,13 @@
 import ttkbootstrap as tb
 
 class SideFrame (tb.Frame):
-    def __init__(self, frame, controller):
+    def __init__(self, frame, systemData):
         super().__init__(
             frame,
             bootstyle="info"
         )
 
-        self._ctrl = controller
+        self._sysData = systemData
         self._build()
 
     def _build(self):

@@ -1,9 +1,9 @@
 from src.gui import GUI
-from src.controller import Controller
+from src.systemData import SystemData
 
 def main():
-    controller = Controller()
-    app = GUI(controller)
+    sysData = SystemData()
+    app = GUI(sysData)
 
 
     app.run()
