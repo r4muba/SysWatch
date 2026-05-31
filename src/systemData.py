@@ -13,12 +13,16 @@ class SystemData:
     
     def getSwapData(self):
         '''
-        https://psutil.readthedocs.io/stable/#psutil.virtual_memory
+        https://psutil.readthedocs.io/stable/#psutil.swap_memory
         '''
         
         return psutil.swap_memory()
         
     def getProcessesData(self):
+        '''
+        https://psutil.readthedocs.io/stable/#processes
+        '''
+        
         processes = []
 
         for proc in psutil.process_iter(['pid', 'name', 'status', 'nice', 'cpu_percent', 'memory_info']):
