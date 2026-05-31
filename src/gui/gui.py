@@ -23,17 +23,26 @@ class GUI:
         self._sideFrame.grid(row=0, column=0, sticky="nsew")
         self._mainFrame.grid(row=0, column=1, sticky="nsew")
     
-    
+    def _forgetEverything(self):
+        self._mainFrame._generalPanel.pack_forget()
+        self._mainFrame._proccessPanel.pack_forget()
+        self._mainFrame._memPanel.pack_forget()
+        self._mainFrame._debugPanel.pack_forget()
+
     def packMemoryPanel(self):
+        self._forgetEverything()
         self._mainFrame._memPanel.pack(fill="both", expand=True)
 
     def packProcessPanel(self):
+        self._forgetEverything()
         self._mainFrame._proccessPanel.pack(fill="both", expand=True)
 
     def packGeneralPanel(self):
+        self._forgetEverything()
         self._mainFrame._generalPanel.pack(fill="both", expand=True)
 
     def packDebugPanel(self):
+        self._forgetEverything()
         self._mainFrame._debugPanel.pack(fill="both", expand=True)
 
     
