@@ -18,3 +18,17 @@ class SystemData:
         
         return psutil.swap_memory()
         
+    def getProcessesData(self):
+        processes = []
+
+        for proc in psutil.process_iter(['pid', 'name', 'status', 'nice', 'cpu_percent', 'memory_info']):
+            process = dict()
+            process['pid'] = proc.info['pid']
+            process['name'] = proc.info['name']
+            process['status'] = proc.info['status']
+            process['nice'] = proc.info['nice']
+            process['cpu_percent'] = proc.info['cpu_percent']
+            process['memory_usage'] = proc.info['memory_info'].rss
+            processes.append(process)
+
+        return processes
