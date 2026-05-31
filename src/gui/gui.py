@@ -6,8 +6,9 @@ class GUI:
     WIDTH = 1280
     HEIGHT = 720
 
-    def __init__(self, systemData):
+    def __init__(self, systemData, threadController):
         self._systemData = systemData
+        self._threadController = threadController
 
         self._root = tb.Window (themename="litera")
         self._root.geometry (f"{GUI.WIDTH}x{GUI.HEIGHT}")
@@ -17,7 +18,7 @@ class GUI:
         self._root.columnconfigure (1, weight=11, uniform="M")
 
         self._sideFrame = SideFrame(self._root, self._systemData, self)
-        self._mainFrame = MainFrame(self._root, self._systemData)
+        self._mainFrame = MainFrame(self._root, self._systemData, self._threadController)
 
         self._sideFrame.grid(row=0, column=0, sticky="nsew")
         self._mainFrame.grid(row=0, column=1, sticky="nsew")
