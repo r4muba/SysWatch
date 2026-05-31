@@ -16,7 +16,7 @@ class GUI:
         self._root.columnconfigure (0, weight=4, uniform="M")
         self._root.columnconfigure (1, weight=11, uniform="M")
 
-        self._sideFrame = SideFrame(self._root, self._systemData)
+        self._sideFrame = SideFrame(self._root, self._systemData, self)
         self._mainFrame = MainFrame(self._root, self._systemData)
 
         self._sideFrame.grid(row=0, column=0, sticky="nsew")
@@ -24,16 +24,16 @@ class GUI:
     
     
     def packMemoryPanel(self):
-        self._mainPanel._memPanel.pack(fill="both", expand=True)
+        self._mainFrame._memPanel.pack(fill="both", expand=True)
 
     def packProcessPanel(self):
-        self._mainPanel._proccessPanel.pack(fill="both", expand=True)
+        self._mainFrame._proccessPanel.pack(fill="both", expand=True)
 
     def packGeneralPanel(self):
-        self._mainPanel._generalPanel.pack(fill="both", expand=True)
+        self._mainFrame._generalPanel.pack(fill="both", expand=True)
 
     def packDebugPanel(self):
-        self._mainPanel._debugPanel.pack(fill="both", expand=True)
+        self._mainFrame._debugPanel.pack(fill="both", expand=True)
 
     
     def run(self):

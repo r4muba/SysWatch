@@ -10,10 +10,10 @@ class MainFrame (tb.Frame):
 
         self._systemData = systemData
 
-        self._memPanel = MemoryPanel(self, self._sysData)
-        self._proccessPanel = ProcessPanel(self, self._sysData)
-        self._generalPanel = GeneralPanel(self, self._sysData)
-        self._debugPanel = DebugPanel(self, self._sysData)
+        self._memPanel = MemoryPanel(self, self._systemData)
+        self._proccessPanel = ProcessPanel(self, self._systemData)
+        self._generalPanel = GeneralPanel(self, self._systemData)
+        self._debugPanel = DebugPanel(self, self._systemData)
 
         self._build()
 
