@@ -1,4 +1,6 @@
 import ttkbootstrap as tb
+from datetime import datetime
+import os
 
 class SideFrame (tb.Frame):
     def __init__(self, frame, systemData, gui):
@@ -10,6 +12,8 @@ class SideFrame (tb.Frame):
         self._gui = gui
         self._systemData = systemData
         self._build()
+        self._update_clock()
+
 
     def _build(self):
 
@@ -52,4 +56,25 @@ class SideFrame (tb.Frame):
             command=self._gui.packDebugPanel
         )
         b4.pack(fill="x", padx=40, pady=20)
+
+        self._hourLbl = tb.Label(
+            self,
+            font=("Helveltica", 20),
+            bootstyle="inverse-dark",
+        )
+        self._hourLbl.pack()
+
+        usernameLbl = tb.Label(
+            self,
+            font=("Helveltica", 20),
+            bootstyle="inverse-primary",
+            text=f"{os.getlogin()}"
+        )
+        usernameLbl.pack()
+
+    def _update_clock(self):
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self._hourLbl.config(text=now)
+        self.after(1000, self._update_clock)
+        
 
