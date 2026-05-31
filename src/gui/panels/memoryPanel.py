@@ -1,5 +1,7 @@
 import ttkbootstrap as tb
 import threading
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 class MemoryPanel(tb.Frame):
     
@@ -12,6 +14,7 @@ class MemoryPanel(tb.Frame):
         )
         self._systemData = systemData
         self._threadController = threadController
+
         self.build()
 
     def build(self):
@@ -23,11 +26,9 @@ class MemoryPanel(tb.Frame):
         )
         title.pack(anchor="w", padx=30, pady=20)
 
+################ RAM var #################33333
         memoryData = self._systemData.getMemoryData()
         self.total_mb = memoryData.total / self._MB
-
-        swapData = self._systemData.getSwapData()
-        #self.total_swap
 
         totalText = tb.Label(
             self,
@@ -36,7 +37,6 @@ class MemoryPanel(tb.Frame):
             bootstyle="warning"
         )
         totalText.place(x=100, y=100)
-
         self.memory_in_use = tb.Meter(
             master=self,
             metersize=150,
@@ -63,16 +63,43 @@ class MemoryPanel(tb.Frame):
         )
         self.memory_available.place(x=300,y=200)
 
+######################### swap var ###############################
+
+        swapData = self._systemData.getSwapData()
+
+        self.swap_var = tb.Meter(
+            master=self,
+            metersize=150,
+            amountused=0,           # Empezamos en 0%
+            amounttotal=swapData.total / self._MB,        # El total
+            metertype="semi",       # Estilo velocímetro
+            textright="MB",    
+            subtext="memoria para swaps",    
+            bootstyle="success",    
+            interactive=False       # El usuario no lo puede mover con el mouse
+        )
+        self.swap_var.place(x=500,y=200)
+
+################# hilos ############################################################
+
         self._threadController.createThread(self.actualizar_ram)
 
     # 2. Función para actualizar el valor dinámicamente
     def actualizar_ram(self):
-        memoryData = self._systemData.getMemoryData()
+        try:
+            memoryData = self._systemData.getMemoryData()
+            swapData = self._systemData.getSwapData() # <-- Traemos los datos frescos del swap
 
-        used_mb = memoryData.used / self._MB
-        free_mb = memoryData.free / self._MB
+            used_mb = memoryData.used / self._MB
+            free_mb = memoryData.free / self._MB
 
-        porcentaje_uso = (used_mb / self.total_mb) * 100
+            num_swaps = swapData.used / self._MB
 
-        self.memory_in_use.configure(amountused=round(porcentaje_uso))
-        self.memory_available.configure(amountused=free_mb)
+            porcentaje_uso = (used_mb / self.total_mb) * 100
+
+            self.memory_in_use.configure(amountused=porcentaje_uso)
+            self.memory_available.configure(amountused=free_mb)
+            self.swap_var.configure(amountused=num_swaps)
+
+        except Exception as e:
+            print("Err")
