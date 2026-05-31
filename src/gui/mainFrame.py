@@ -12,7 +12,7 @@ class MainFrame (tb.Frame):
         self._threadController = threadController
 
         self._memPanel = MemoryPanel(self, self._systemData, self._threadController)
-        self._proccessPanel = ProcessPanel(self, self._systemData)
+        self._proccessPanel = ProcessPanel(self, self._systemData, self._threadController)
         self._generalPanel = GeneralPanel(self, self._systemData, self._threadController)
         self._debugPanel = DebugPanel(self, self._systemData, self._threadController)
 
