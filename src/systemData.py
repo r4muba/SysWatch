@@ -1,3 +1,3 @@
-class Controller:
+class SystemData:
     def __init__(self):
         ...
